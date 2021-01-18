@@ -46,7 +46,8 @@
       <br>
       <h1 style="text-align: center; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Select Product Category to Add Sales</h1>
         <% rs.forEach(function(item) { %>
-            <input  class="butt" type="button" onclick= "location.href= '/sales/<%= item.cat_id %>';" value="<%= item.cat_name %>"/>
+            <a href = "sales/<%= item.cat_id %>"> <input  class="butt" type="button"  value="<%= item.cat_name %>"/> </a>
+           
             
         <% }); %>  
     

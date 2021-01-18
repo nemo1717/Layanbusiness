@@ -208,30 +208,63 @@ router.post('/sales', function (req, res, next) {
 
         const tot_price = quant * price;
         const full_name = req.user.first_name + ' ' + req.user.last_name;
-        var quantleft = quantity - quant;
+        var quantities = parseInt(quantity);
 
-        if(quantity <= 0 ){
-          req.flash('error', 'Quantity Error: Product Quantity less than 0. Update Product Quantity')
+        var quantleft = quantities - quant;
+        console.log("weeeee  "+quantleft);
+        console.log("rrrrrrr "+quantity)
+        console.log("gggggg  " + quant);
+
+        if(quantities < 0 && quantleft < 0 ){
+          console.log("yes")
+          req.flash('error', 'Quantity Error: product quantity less than 0 or quantity left after adding will be less than 0. Update Product Quantity')
           res.redirect('/Sales-Category');     
         }
 
-        if(quantity > 0 && quantleft >= 0){
+        if(quantities > 0 && quantleft < 0 ){
+          console.log("yes")
+          req.flash('error', 'Quantity Error: product quantity less than 0 or quantity left after adding will be less than 0. Update Product Quantity')
+          res.redirect('/Sales-Category');     
+        }
+        
+        if(quantities == 0 && quantleft < 0 ){
+          console.log("yes")
+          req.flash('error', 'Quantity Error: product quantity less than 0 or quantity left after adding will be less than 0. Update Product Quantity')
+          res.redirect('/Sales-Category');     
+        }
+
+
+
+        if(quantities <  0 ){
+          console.log('True')
+
+        }
+        else{
+          console.log("False");
+        }
+
+        if(quantities > 0 && quantleft >= 0){
         db.query("insert into Sales(prod_id, cust_id, date , price, quantity, comments, clientid, add_by, total_price) values ('" + pid + "','" + cid + "','" + date + "', '" + price + "', '" + quant + "','" + description + "','" + req.user.clientid + "','" + full_name + "', '" + tot_price + "'); update Products set stockquantity = stockquantity - ? where prod_name = ? and clientid = ?",[quant, pname, req.user.clientid], function (err, rs) {
           if (err) {
             console.log(err);
             req.flash('error', 'Error: Sale not Inserted')
             res.redirect('/Sales-Category');
           }
+          
           else {
             req.flash('success_msg', 'Sale Successfully Added')
             res.redirect('/Sales-Category');
           }
+          
         });
       }
-      else {
+      /*
+      if (quantleft < 0) {
         req.flash('error', 'Quantity Error: Product Quantity left after adding will be less than 0. Update Product Quantity')
           res.redirect('/Sales-Category');
       }
+      */
+    
       }
     });
 });
