@@ -3,13 +3,13 @@ var mysql = require('mysql');
 var bcrypt = require('bcryptjs');
 var nodemailer = require('nodemailer');
 
+// Mysql connectionString
+var mysql = require('mysql');
 var db = mysql.createPool({
-  host: 'layanenterprises.cjajxkvdxg0f.us-east-2.rds.amazonaws.com',
-  user: 'layanent',
-  password: 'Layangrade17',
-  database: 'layanenterprises',
-  multipleStatements: true
-
+  host: 'XXXXXXXXX',
+  user: 'XXXX',
+  password: 'XXXXX',
+  database: 'XXXXXXX',
 });
 
 module.exports = function(passport) {
