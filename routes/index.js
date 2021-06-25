@@ -17,20 +17,16 @@ var fs = require('fs');
 // Mysql connectionString
 var mysql = require('mysql');
 var db = mysql.createPool({
-  host: 'XXXXXXXXX',
-  user: 'XXXX',
-  password: 'XXXXX',
-  database: 'XXXXXXX',
+  host: 'database-1.c8sjwaeiqqxx.us-east-2.rds.amazonaws.com',
+  user: 'admin',
+  password: 'Layangrade17',
+  database: 'layanenterprises',
+  multipleStatements: true
+
 });
 
 
-http.createServer(function (req, res) {
-  fs.readFile('BasicColumnChart.html', function (err, data) {
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write(data);
-    res.end();
-  });
-}).listen(8080);
+
 
 
 /* GET home page. */
