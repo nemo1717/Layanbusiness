@@ -6,10 +6,10 @@ var nodemailer = require('nodemailer');
 // Mysql connectionString
 var mysql = require('mysql');
 var db = mysql.createPool({
-  host: 'database-1.c8sjwaeiqqxx.us-east-2.rds.amazonaws.com',
-  user: 'admin',
-  password: 'Layangrade17',
-  database: 'layanenterprises',
+  host: 'xxxxxx',
+  user: 'xxxx',
+  password: 'xxxx',
+  database: 'xxxxxx',
   multipleStatements: true
 
 });
